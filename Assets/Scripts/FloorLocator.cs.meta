@@ -1,0 +1,29 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FloorLocator : MonoBehaviour
+{
+    [Range(0,5)]
+    public int Height;
+    
+    private void OnValidate()
+    {
+		UpdateLocation();
+    }
+    private void OnDestroy()
+	{
+		UpdateLocation();
+	}
+
+    private void UpdateLocation()
+	{
+		int index = transform.GetSiblingIndex();
+		transform.position = new Vector3(0, Height * 6, index * 10);
+        if(index>0)
+		{
+             transform.parent.GetChild(index-1)
+		}
+        
+	}
+}
